@@ -13,12 +13,18 @@ const checkSchemeId = (req, res, next) => {
     if(!scheme){
       next({
         status:404,
-        message:"scheme with scheme_id <actual id> not found"
+        message:`scheme with scheme_id ${req.params.scheme_id} not found`
       })
     }else{
       next()
     }
   })
+  .catch(error=>{
+    next({
+      status:404,
+      message:`scheme with scheme_id ${req.params.scheme_id} not found`
+    })
+  });
 }
 
 /*
